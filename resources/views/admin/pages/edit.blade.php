@@ -1,97 +1,97 @@
 @php
-    $categories = [
-        [
-        'id' => 1,
-        'name' => 'Miscellanea'
-        ],
-        [
-        'id' => 2,
-        'name' => 'Lorem'
-        ],
-        [
-        'id' => 3,
-        'name' => 'ispum'
-        ],
-        [
-        'id' => 4,
-        'name' => 'Dolor'
-        ],
-        [
-        'id' => 5,
-        'name' => 'Sit'
-        ]
-    ];
-
-    $tags = [
-        [
-            'id' => 1,
-            'name' => 'Tag 1'
-        ],
-        [
-            'id' => 2,
-            'name' => 'Tag 2'
-        ],
-        [
-            'id' => 3,
-            'name' => 'Tag 3'
-        ],
-        [
-            'id' => 4,
-            'name' => 'Tag 4'
-        ],
-        [
-            'id' => 5,
-            'name' => 'Tag 5'
-        ],
-        [
-            'id' => 6,
-            'name' => 'Tag 6'
-        ],
-        [
-            'id' => 7,
-            'name' => 'Tag 7'
-        ],
-    ];
-
-    $photos = [
-        [
-            'id' => 1,
-            'title' => 'lorem ipsum',
-            'path' => 'image/nomefoto.jpg'
-        ],
-        [
-            'id' => 2,
-            'title' => 'Due lorem ipsum',
-            'path' => 'image/nomefoto.jpg'
-        ],
-        [
-            'id' => 3,
-            'title' => 'Tre lorem ipsum',
-            'path' => 'image/nomefoto.jpg'
-        ],
-    ];
-
-    $page = [
-        'id' => 1,
-        'title' => 'lorem ipsum',
-        'summary' => 'lorem ipsum',
-        'body' => 'Questo è un testo',
-        'category_id' => 3,
-        'tags' => [
-            1,
-            3,
-            5
-        ],
-        'photos' => [
-            3,
-            2
-        ]
-    ];
-
-    $oldtags = [
-        1,
-        2
-    ];
+    // $categories = [
+    //     [
+    //     'id' => 1,
+    //     'name' => 'Miscellanea'
+    //     ],
+    //     [
+    //     'id' => 2,
+    //     'name' => 'Lorem'
+    //     ],
+    //     [
+    //     'id' => 3,
+    //     'name' => 'ispum'
+    //     ],
+    //     [
+    //     'id' => 4,
+    //     'name' => 'Dolor'
+    //     ],
+    //     [
+    //     'id' => 5,
+    //     'name' => 'Sit'
+    //     ]
+    // ];
+    //
+    // $tags = [
+    //     [
+    //         'id' => 1,
+    //         'name' => 'Tag 1'
+    //     ],
+    //     [
+    //         'id' => 2,
+    //         'name' => 'Tag 2'
+    //     ],
+    //     [
+    //         'id' => 3,
+    //         'name' => 'Tag 3'
+    //     ],
+    //     [
+    //         'id' => 4,
+    //         'name' => 'Tag 4'
+    //     ],
+    //     [
+    //         'id' => 5,
+    //         'name' => 'Tag 5'
+    //     ],
+    //     [
+    //         'id' => 6,
+    //         'name' => 'Tag 6'
+    //     ],
+    //     [
+    //         'id' => 7,
+    //         'name' => 'Tag 7'
+    //     ],
+    // ];
+    //
+    // $photos = [
+    //     [
+    //         'id' => 1,
+    //         'title' => 'lorem ipsum',
+    //         'path' => 'image/nomefoto.jpg'
+    //     ],
+    //     [
+    //         'id' => 2,
+    //         'title' => 'Due lorem ipsum',
+    //         'path' => 'image/nomefoto.jpg'
+    //     ],
+    //     [
+    //         'id' => 3,
+    //         'title' => 'Tre lorem ipsum',
+    //         'path' => 'image/nomefoto.jpg'
+    //     ],
+    // ];
+    //
+    // $page = [
+    //     'id' => 1,
+    //     'title' => 'lorem ipsum',
+    //     'summary' => 'lorem ipsum',
+    //     'body' => 'Questo è un testo',
+    //     'category_id' => 3,
+    //     'tags' => [
+    //         1,
+    //         3,
+    //         5
+    //     ],
+    //     'photos' => [
+    //         3,
+    //         2
+    //     ]
+    // ];
+    //
+    // $oldtags = [
+    //     1,
+    //     2
+    // ];
 
     $oldtags = null;
 
@@ -122,19 +122,19 @@
                 </div>
                 <div class="row">
                     <div class="col-12">
-                        <form action="" method="POST">
+                        <form action="{{route('admin.pages.update', $page->id)}}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" id="title" placeholder="Inserisci un titolo" value="{{$page['title']}}">
+                                <input type="text" class="form-control" id="title" placeholder="Inserisci un titolo" value="{{$page['title']}}" name="title">
                                 @error('title')
                                     <small class="form-text">Errore</small>
                                 @enderror
                             </div>
                             <div class="form-group">
                                 <label for="summary">Summary</label>
-                                <input type="text" class="form-control" id="summary" placeholder="Inserisci il sommario" value="{{$page['summary']}}">
+                                <input type="text" class="form-control" id="summary" placeholder="Inserisci il sommario" value="{{$page['summary']}}" name="summary">
                                 @error('summary')
                                     <small class="form-text">Errore</small>
                                 @enderror
@@ -186,10 +186,10 @@
                                             ] --}}
                                             {{-- $tag['id'] è dentro al mio array di tags della pagina?
                                             $page['tags'] --}}
-                                            @if(is_array($oldtags))
-                                                <input class="form-check-input" type="checkbox" name="tags[]" id="tag{{$tag['id']}}" value="{{$tag['id']}}" {{(in_array($tag['id'], $oldtags)) ? 'checked' : ''}}>
+                                            @if(is_array(old('tags')))
+                                                <input class="form-check-input" type="checkbox" name="tags[]" id="tag{{$tag['id']}}" value="{{$tag['id']}}" {{(in_array($tag['id'], old('tags'))) ? 'checked' : ''}}>
                                             @else
-                                                <input class="form-check-input" type="checkbox" name="tags[]" id="tag{{$tag['id']}}" value="{{$tag['id']}}" {{(in_array($tag['id'], $page['tags'])) ? 'checked' : ''}}>
+                                                <input class="form-check-input" type="checkbox" name="tags[]" id="tag{{$tag['id']}}" value="{{$tag['id']}}" {{($page->tags->contains($tag['id'])) ? 'checked' : ''}}>
                                             @endif
                                             {{-- <input class="form-check-input" type="checkbox" name="tags[]" id="tag{{$tag['id']}}" value="{{$tag['id']}}" {{((is_array($oldtags) && in_array($tag['id'], $oldtags)) || in_array($tag['id'], $page['tags'])) ? 'checked' : ''}}> --}}
                                             <label class="form-check-label" for="tag{{$tag['id']}}">{{$tag['name']}}</label>

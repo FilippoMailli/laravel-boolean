@@ -13,6 +13,6 @@ class Tag extends Model
 
     public function pages()
     {
-        return $this->belongsTo('App\Page');
+        return $this->belongsToMany('App\Page');
     }
 }
